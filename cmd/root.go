@@ -29,12 +29,12 @@ var ErrNotFound = errors.New("not found")
 // the parent (a.k.a upstream) repository is also included in the search.
 //
 // quick:
-//   - Focuses on the most likely PR sources to minimize API calls.
-//   - Returns only "origin" and the remote configured via `gh repo set-default`.
+// - Focuses on the most likely PR sources to minimize API calls.
+// - Returns only "origin" and the remote configured via `gh repo set-default`.
 //
 // deep:
-//   - Scans all registered remotes to ensure comprehensive PR discovery.
-//   - Useful for complex setups where PRs may span multiple forks or parents.
+// - Scans all registered remotes to ensure comprehensive PR discovery.
+// - Useful for complex setups where PRs may span multiple forks or parents.
 func GetPreferredRemotes(ctx context.Context, connection shared.Connection, scan shared.ScanMode) ([]shared.Remote, error) {
 	remotes, err := conn.GetRemoteNames(ctx, connection)
 	if err != nil {
